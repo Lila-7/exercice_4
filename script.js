@@ -9,6 +9,7 @@ searchForm.addEventListener("submit", async (event) => {
 
 
         try{ const url = `https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`;
+         const response = await fetch(url);
          const data = await response.json();
 
          if (data.Response === "False"){
