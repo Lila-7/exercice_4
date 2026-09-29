@@ -24,7 +24,7 @@ searchForm.addEventListener("submit", async (event) => {
         });
 
         } catch (error) {
-            console.error("Error fetching data from OMDB API:", error);
+            console.error("Error fetching movies:", error);
             searchResults.innerHTML = `<p class="text-danger">Error occurred while fetching data
         .</p>`;
         }
