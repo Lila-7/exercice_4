@@ -1,20 +1,37 @@
 const searchForm = document.getElementById("searchForm");
 const searchQuery = document.getElementById("searchQuery");
 const searchResults = document.getElementById("searchResults");
-const API_KEY = "59b22ff9"; 
 
 searchForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const query = searchQuery.value.trim();
-    searchResults.innerHTML = ""; // Clear previous results
+    searchResults.innerHTML = ""; 
 
-   if (query) {
-        try{ const response = await fetch('http://www.omdbapi.com/?apikey=APIKEY&s=term', {)
 
+        try{ const url = `https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`;
+         const data = await response.json();
+
+         if (data.Response === "False"){
+            searchResults.innerHTML = `<p class="text-danger">No results found for "${data.Title}". 
+            Please try a different search term.</p>`;
+            return;
+         }
+
+        
+        data.Search.forEach(movie => {
+            const movieCard = createMovieCard(movie);
+            searchResults.appendChild(movieCard);
+        });
+
+        } catch (error) {
+            console.error("Error fetching data from OMDB API:", error);
+            searchResults.innerHTML = `<p class="text-danger">Error occurred while fetching data
+        .</p>`;
         }
-   }
+            
+    })
     
-});
+
 
 // helper function to create Bootstrap card for a movie
 function createMovieCard(movie) {
