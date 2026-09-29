@@ -1,3 +1,5 @@
+// Lila Camus Marañón and Patricia Lara García
+
 const searchForm = document.getElementById("searchForm");
 const searchQuery = document.getElementById("searchQuery");
 const searchResults = document.getElementById("searchResults");
@@ -18,7 +20,6 @@ searchForm.addEventListener("submit", async (event) => {
             return;
          }
 
-        
         data.Search.forEach(movie => {
             const movieCard = createMovieCard(movie);
             searchResults.appendChild(movieCard);
